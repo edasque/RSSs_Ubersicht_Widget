@@ -8,31 +8,40 @@ import (
 	"os"
 )
 
+type feed struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
+type config struct {
+	Feeds []feed `json:"feeds"`
+}
+
 func main() {
-	file, e := ioutil.ReadFile("./config.json")
+	file, e := ioutil.ReadFile("RSSs.widget/config.json")
 	if e != nil {
 		fmt.Printf("File error: %v\n", e)
 		os.Exit(1)
 	}
-	type feed struct {
-		name string `json:"name"`
-	}
-
-	type config struct {
-		feeds []feed `json:"feeds"`
-	}
 
 	localConfig := config{}
-	json.Unmarshal(file, &config)
+	if err := json.Unmarshal(file, &localConfig); err != nil {
+		panic(err)
+	}
 
-	outputAndParseFeed("http://feeds.bbci.co.uk/news/rss.xml?edition=int")
+	// fmt.Println(localConfig)
+
+	for _, item := range localConfig.Feeds {
+		outputAndParseFeed(item)
+
+	}
 
 }
 
-func outputAndParseFeed(feedURL string) {
+func outputAndParseFeed(theFeed feed) {
 	fp := gofeed.NewParser()
-	feed, _ := fp.ParseURL(feedURL)
-	fmt.Printf("<H3>%s</H3>\n", feed.Title)
+	feed, _ := fp.ParseURL(theFeed.URL)
+	fmt.Printf("<H3>%s</H3>\n", theFeed.Name)
 	fmt.Println("<ul>")
 
 	for index, element := range feed.Items {

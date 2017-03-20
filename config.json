@@ -1,10 +1,22 @@
 {
-	"feeds":[
+	"bob": "42",
+	"feeds": [
+
+	{
+		"name": "Boston Globe",
+		"url": "http://www.bostonglobe.com/rss/feedly.xml",
+		"max": 5},
+
 		{
-			"name":"BBC Top News",
-			"url":"http://feeds.bbci.co.uk/news/rss.xml?edition=int",
-			"max":2
-		},
-		{"url":"http://www.theverge.com/rss/frontpage"}
-	]
+		"name": "BBC Top News",
+		"url": "http://feeds.bbci.co.uk/news/rss.xml?edition=int",
+		"max": 2
+	}, {
+		"name": "The Verge",
+		"url": "http://www.theverge.com/rss/frontpage"
+	},
+	{
+		"name": "WSJ World News",
+		"url": "http://www.wsj.com/xml/rss/3_7085.xml"
+	}]
 }
