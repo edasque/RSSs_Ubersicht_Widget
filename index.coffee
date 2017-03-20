@@ -1,6 +1,6 @@
 format = '%d %A %R'
 
-command: "export PATH=$PATH:/usr/local/bin;/usr/local/bin/coffee RSSs.widget/src/rss_output.coffee"
+command: "RSSs.widget/src/outPutFeed"
 
 # the refresh frequency in milliseconds
 refreshFrequency: "10m"

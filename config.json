@@ -1,5 +1,10 @@
 {
-	"feeds":["http://feeds.bbci.co.uk/news/rss.xml?edition=int",
-		"http://www.theverge.com/rss/frontpage"
+	"feeds":[
+		{
+			"name":"BBC Top News",
+			"url":"http://feeds.bbci.co.uk/news/rss.xml?edition=int",
+			"max":2
+		},
+		{"url":"http://www.theverge.com/rss/frontpage"}
 	]
 }
