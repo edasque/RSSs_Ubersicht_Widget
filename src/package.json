@@ -1,0 +1,12 @@
+{
+  "name": "com.dasque.RSSs_widget_for_Ubersicht",
+  "version": "0.0.1",
+  "description": "RSSs widget for Ubersicht",
+  "main": "index.js",
+  "author": "Erik Dasque",
+  "license": "MIT",
+  "dependencies": {
+    "feedparser": "^2.1.0",
+    "request": "^2.81.0"
+  }
+}

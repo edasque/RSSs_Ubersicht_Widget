@@ -1,0 +1,5 @@
+{
+	"feeds":["http://feeds.bbci.co.uk/news/rss.xml?edition=int",
+		"http://www.theverge.com/rss/frontpage"
+	]
+}
