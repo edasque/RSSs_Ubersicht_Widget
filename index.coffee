@@ -12,16 +12,21 @@ render: (output) -> """
 
 style: """
   color: #FFFFFF
-  font-family: Helvetica
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: rgba(#000, 0.6)
+
   left: 0px
-  top: 30px
-  font-size: .8em
+  top: 10px
+  font-size: .9em
+
+  ul
+    margin: 8px 0 20px 0
 
   A
     color:white
  
   h3
-    font-style:"Futura"
+    font-style: Futura
     font-weight: 500
     margin: 0
     padding: 0 0 0 5px

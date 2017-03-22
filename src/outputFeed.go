@@ -9,12 +9,14 @@ import (
 )
 
 type feed struct {
-	Name string `json:"name"`
-	URL  string `json:"url"`
+	Name      string `json:"name"`
+	URL       string `json:"url"`
+	Max_Items int    `json:"max_items"`
 }
 
 type config struct {
-	Feeds []feed `json:"feeds"`
+	Feeds     []feed `json:"feeds"`
+	Max_Items int    `json:"max_items"`
 }
 
 func main() {
@@ -23,7 +25,6 @@ func main() {
 		fmt.Printf("File error: %v\n", e)
 		os.Exit(1)
 	}
-
 	localConfig := config{}
 	if err := json.Unmarshal(file, &localConfig); err != nil {
 		panic(err)
@@ -31,24 +32,47 @@ func main() {
 
 	// fmt.Println(localConfig)
 
+	const DEFAULT_MA = 5
+
+	var max = DEFAULT_MA
+
+	if localConfig.Max_Items > 0 {
+		max = localConfig.Max_Items
+	}
+
 	for _, item := range localConfig.Feeds {
-		outputAndParseFeed(item)
+
+		if item.Max_Items > 0 {
+			outputAndParseFeed(item, item.Max_Items)
+		} else {
+
+			outputAndParseFeed(item, max)
+		}
 
 	}
 
 }
 
-func outputAndParseFeed(theFeed feed) {
+func outputAndParseFeed(theFeed feed, max_items int) {
 	fp := gofeed.NewParser()
 	feed, _ := fp.ParseURL(theFeed.URL)
-	fmt.Printf("<H3>%s</H3>\n", theFeed.Name)
+
+	if theFeed.Name != "" {
+		fmt.Printf("<H3>%s</H3>\n", theFeed.Name)
+
+	} else {
+
+		fmt.Printf("<H3>%s</H3>\n", feed.Title)
+
+	}
+
 	fmt.Println("<ul>")
 
-	for index, element := range feed.Items {
-		if index < 6 {
-			fmt.Printf("<li>%s - <a href='%s'> <i class='fa fa-external-link'></i> </a></li>\n", element.Title, element.Link)
+	items := feed.Items[:max_items]
 
-		}
+	for _, element := range items {
+		fmt.Printf("<li>%s - <a href='%s'> <i class='fa fa-external-link'></i> </a></li>\n", element.Title, element.Link)
+
 	}
 	fmt.Println("</ul>")
 }
