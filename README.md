@@ -7,8 +7,6 @@ RSSs-Widget
 * Can override max number of items per feed or globally in config (default is 5)
 * Adjust left and top in the style section in index.coffee if you want it placed somewhere else on the screen
 * Customize the feed list by editing RSSs-Widget/RSSs.widget/config.json
-* Go executable provided for mac (outputFeed) and Windows (outputFeed.exe)
-	* If you are on Windows, modify the ```command``` in index.coffee to use outputFeed.exe instead
 * JSON config file should be pretty self-explanatory:
 
 ```JSON
