@@ -1,23 +1,21 @@
 {
 	"max_items": 5,
 	"feeds": [
-
-	{
+ 	{
 		"name": "Boston Globe",
 		"url": "http://www.bostonglobe.com/rss/feedly.xml",
 		"max_items": 5},
-
-		{
-			"name": "BBC Top News",
+	{
+		"name": "BBC Top News",
 		"url": "http://feeds.bbci.co.uk/news/rss.xml?edition=int"
-	}, {
+	},
+	{
 		"name": "The Verge",
 		"url": "http://www.theverge.com/rss/frontpage"
 	},
 	{
 		"name": "WSJ World News",
 		"url": "http://www.wsj.com/xml/rss/3_7085.xml",
-				"max_items": 8
-
+		"max_items": 8
 	}]
 }
