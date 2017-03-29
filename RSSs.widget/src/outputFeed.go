@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/mmcdole/gofeed"
 	"io/ioutil"
+	"math"
 	"os"
 )
 
@@ -68,7 +69,9 @@ func outputAndParseFeed(theFeed feed, max_items int) {
 
 	fmt.Println("<ul>")
 
-	items := feed.Items[:max_items]
+	var number_number_of_item = int(math.Min(float64(len(feed.Items)), float64(max_items)))
+
+	items := feed.Items[:number_number_of_item]
 
 	for _, element := range items {
 		fmt.Printf("<li>%s - <a href='%s'> <i class='fa fa-external-link'></i> </a></li>\n", element.Title, element.Link)
