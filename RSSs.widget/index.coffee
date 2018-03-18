@@ -1,6 +1,6 @@
 format = '%d %A %R'
 
-command: "RSSs-Widget/RSSs.widget/src/outPutFeed"
+command: "RSSs.widget/src/outPutFeed"
 
 # the refresh frequency in milliseconds
 refreshFrequency: "10m"
