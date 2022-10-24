@@ -13,14 +13,14 @@ render: (output) -> """
 style: """
   color: #FFFFFF
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: rgba(#000, 0.6)
+
 
   left: 0px
   top: 10px
   font-size: .9em
 
   ul
-    margin: 8px 0 20px 0
+    margin: 4px 0 8px 0
 
   A
     color:white

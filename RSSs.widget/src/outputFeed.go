@@ -3,10 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/mmcdole/gofeed"
 	"io/ioutil"
+	"log"
 	"math"
 	"os"
+
+	"github.com/mmcdole/gofeed"
 )
 
 type feed struct {
@@ -56,7 +58,13 @@ func main() {
 
 func outputAndParseFeed(theFeed feed, max_items int) {
 	fp := gofeed.NewParser()
-	feed, _ := fp.ParseURL(theFeed.URL)
+	feed, feedParseError := fp.ParseURL(theFeed.URL)
+
+	if feedParseError != nil {
+		fmt.Println("Error querying: " + theFeed.URL)
+		log.Fatalln(feedParseError)
+
+	}
 
 	if theFeed.Name != "" {
 		fmt.Printf("<H3>%s</H3>\n", theFeed.Name)
@@ -67,9 +75,11 @@ func outputAndParseFeed(theFeed feed, max_items int) {
 
 	}
 
+	feedLength := len(feed.Items)
+
 	fmt.Println("<ul>")
 
-	var number_number_of_item = int(math.Min(float64(len(feed.Items)), float64(max_items)))
+	var number_number_of_item = int(math.Min(float64(feedLength), float64(max_items)))
 
 	items := feed.Items[:number_number_of_item]
 
