@@ -84,7 +84,7 @@ func outputAndParseFeed(theFeed feed, max_items int) {
 	items := feed.Items[:number_number_of_item]
 
 	for _, element := range items {
-		fmt.Printf("<li>%s - <a href='%s'> <i class='fa fa-external-link'></i> </a></li>\n", element.Title, element.Link)
+		fmt.Printf("<li><span>%s</span> - <a href='%s'> <i class='fa fa-external-link'></i> </a></li>\n", element.Title, element.Link)
 
 	}
 	fmt.Println("</ul>")
