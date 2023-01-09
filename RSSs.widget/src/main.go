@@ -23,7 +23,8 @@ type config struct {
 }
 
 func main() {
-	file, e := ioutil.ReadFile("RSSs-Widget/RSSs.widget/config.json")
+	pwd, _ := os.Executable()
+	file, e := ioutil.ReadFile(filepath.Dir(pwd)+"/../config.json")
 	if e != nil {
 		fmt.Printf("File error: %v\n", e)
 		os.Exit(1)
