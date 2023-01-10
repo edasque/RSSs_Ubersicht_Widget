@@ -83,7 +83,11 @@ Those can be used within the {{range .Items}} section.
 ### 10.01.2023 - [Alex](github.com/portalzine)
 
 - Updated styles
-- Updated and cleaned up the [Go] feed render script
+- Updated and cleaned up the [Go](https://go.dev/) feed render script
 - Moved feed rendering to a template for easy tweaking
-- Moved to [Font-Awesome] 6 Free
+- Moved to [Font-Awesome](https://fontawesome.com) 6 Free
 - Documentation update
+
+### 23.03.2017 - [Erik](https://github.com/edasque)
+
+- Initial Release
