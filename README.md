@@ -80,6 +80,14 @@ Those can be used within the {{range .Items}} section.
 | Categories    | /rss/channel/item/category<br>/rss/channel/item/dc:subject<br>/rss/channel/item/itunes:keywords<br>/rdf: RDF/channel/item/dc:subject                                                | /feed/entry/category                                                          | /items/tags                          |
 | Enclosures    | /rss/channel/item/enclosure                                                                                                                                                         | /feed/entry/link[@rel=”enclosure”]                                            | /items/attachments                   |
 
+Added a noescape function to templates, that prevents escaping of HTML.
+
+```
+{{ .Content|noescape}}
+```
+
+
+
 ## Changelog
 
 ### 10.01.2023 - [Alex](github.com/portalzine)
@@ -89,6 +97,7 @@ Those can be used within the {{range .Items}} section.
 - Moved feed rendering to a template for easy tweaking
 - Moved to [Font-Awesome](https://fontawesome.com) 6 Free
 - Documentation update
+- Add noescape function for HTML
 
 ### 23.03.2017 - [Erik](https://github.com/edasque)
 
