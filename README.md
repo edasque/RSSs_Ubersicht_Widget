@@ -10,6 +10,8 @@ Still using  the [classic CoffeeScript widget format](https://github.com/felixha
 
 ---
 
+![Alt text](screenshot.png?raw=true "Preview")
+
 ## Installation
 
 1. Copy the RSSs.widget folder to the **Übersicht widget folder**.
