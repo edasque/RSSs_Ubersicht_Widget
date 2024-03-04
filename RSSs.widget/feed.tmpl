@@ -1,0 +1,10 @@
+<section>
+ <h3>{{ .Title}}</h3>
+ <ul>
+ {{range .Items}}
+  <li>
+   <span>{{ .Title}}</span><a href='{{ .Link}}'><i class='fa fa-solid fa-link'></i> </a>
+  </li>
+ {{end}}
+ </ul>
+</section>

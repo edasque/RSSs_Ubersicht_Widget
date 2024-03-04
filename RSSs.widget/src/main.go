@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"math"
 	"os"
-
+    "path/filepath"
+	"html/template"
 	"github.com/mmcdole/gofeed"
 )
 
@@ -22,6 +22,9 @@ type config struct {
 	Max_Items int    `json:"max_items"`
 }
 
+
+
+
 func main() {
 	pwd, _ := os.Executable()
 	file, e := ioutil.ReadFile(filepath.Dir(pwd)+"/../config.json")
@@ -33,8 +36,6 @@ func main() {
 	if err := json.Unmarshal(file, &localConfig); err != nil {
 		panic(err)
 	}
-
-	// fmt.Println(localConfig)
 
 	const DEFAULT_MAX = 5
 
@@ -57,8 +58,13 @@ func main() {
 
 }
 
+func noescape(str string) template.HTML {
+return template.HTML(str)
+}
+
 func outputAndParseFeed(theFeed feed, max_items int) {
 	fp := gofeed.NewParser()
+	pwd, _ := os.Executable()
 	feed, feedParseError := fp.ParseURL(theFeed.URL)
 
 	if feedParseError != nil {
@@ -68,25 +74,16 @@ func outputAndParseFeed(theFeed feed, max_items int) {
 	}
 
 	if theFeed.Name != "" {
-		fmt.Printf("<H3>%s</H3>\n", theFeed.Name)
+		feed.Title= theFeed.Name
+	} 
+	
+	Tmpl, err := template.New("").Funcs(template.FuncMap{"noescape":noescape }).ParseFiles(filepath.Dir(pwd)+"/../feed.tmpl")
+    
+	if err != nil {
+        log.Fatal("Feed parsing error:", err)
+    }
 
-	} else {
 
-		fmt.Printf("<H3>%s</H3>\n", feed.Title)
-
-	}
-
-	feedLength := len(feed.Items)
-
-	fmt.Println("<ul>")
-
-	var number_number_of_item = int(math.Min(float64(feedLength), float64(max_items)))
-
-	items := feed.Items[:number_number_of_item]
-
-	for _, element := range items {
-		fmt.Printf("<li><span>%s</span> - <a href='%s'> <i class='fa fa-external-link'></i> </a></li>\n", element.Title, element.Link)
-
-	}
-	fmt.Println("</ul>")
+	fmt.Println(Tmpl.ExecuteTemplate(os.Stdout, "feed.tmpl", feed))
+	
 }
