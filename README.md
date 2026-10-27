@@ -14,6 +14,8 @@ Still using  the [classic CoffeeScript widget format](https://github.com/felixha
 
 ## Installation
 
+Requires macOS 12 (Monterey) or later.
+
 1. Copy the RSSs.widget folder to the **Übersicht widget folder**.
 
 2. Override the heading for RSS feeds through **config.json** (name property).
